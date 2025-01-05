@@ -47,5 +47,5 @@ jobs:
 
       - name: Run tests
         run: |
-          python -m unittest app_test.py
+          python -m unittest src/app_test.py
 
