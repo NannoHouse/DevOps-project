@@ -1,17 +1,28 @@
+import unittest
 import app
 
-def test_random_number():
-    client = app.app.test_client()
 
-    response = client.get('/')
+class TestApp(unittest.TestCase):
 
-    assert response.status_code == 200
+    def setUp(self):
+        self.client = app.app.test_client()
 
-    data = response.data.decode()
-    assert "Random Number:" in data
+    def test_connectiion(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
 
-    try:
+    def test_data(self):
+        response = self.client.get("/")
+        data = response.data.decode()
+        self.assertIn("Random Number:", data)
+
+    def test_valid_data(self):
+        response = self.client.get("/")
+        data = response.data.decode()
         random_number = int(data.split(":")[1].strip())
-        assert 1 <= random_number <= 1000
-    except (ValueError, IndexError):
-        assert False, "Response does not contain a valid random number"
+        self.assertGreaterEqual(random_number, 1)
+        self.assertLessEqual(random_number, 1000)
+
+
+if __name__ == "__main__":
+    unittest.main()
