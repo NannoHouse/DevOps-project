@@ -5,7 +5,7 @@ from src.app import app
 class TestApp(unittest.TestCase):
 
     def setUp(self):
-        self.client = app.app.test_client()
+        self.client = app.test_client()
 
     def test_connectiion(self):
         response = self.client.get("/")
