@@ -45,6 +45,19 @@ jobs:
           pip install -r src/requirements.txt
       - name: Run tests
         run: python -m unittest src/app_test.py
+  snyk:
+    name: Snyk check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run Snyk
+        working-directory: ${{github.workspace}}
+        run: |
+          pip install -r src/requirements.txt
+          npm install -g snyk
+          snyk auth ${{ secrets.SNYK_TOKEN }}
+          snyk test --all-projects --detection-depth=3
 
   docker-build-and-scan:
     runs-on: ubuntu-latest
