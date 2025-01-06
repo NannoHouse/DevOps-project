@@ -58,6 +58,16 @@ jobs:
           pip install -r src/requirements.txt
       - name: Run tests
         run: python -m unittest src/app_test.py
+  bandit:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Run Bandit Security Analysis
+        uses: PyCQA/bandit-action@v2
+        with:
+          directory: ./src
+          args: '-r ./src'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   docker-build-and-scan:
     runs-on: ubuntu-latest
