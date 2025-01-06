@@ -31,6 +31,7 @@ jobs:
   editorconfig-check:
     name: EditorConfig check
     runs-on: ubuntu-latest
+    needs: flake8-check 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -40,7 +41,7 @@ jobs:
 
   unit-testing:
     runs-on: ubuntu-latest
-    needs: flake8-check 
+    needs: [flake8-check, editorconfig-check]
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3
