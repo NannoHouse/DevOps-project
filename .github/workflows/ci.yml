@@ -64,7 +64,7 @@ jobs:
       actions: read
       contents: read
     steps:
-     - name: Run Bandit Security Analysis
+      - name: Run Bandit Security Analysis
         uses: PyCQA/bandit-action@v1
 
   docker-build-and-scan:
