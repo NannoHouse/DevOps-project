@@ -41,7 +41,7 @@ jobs:
           snyk test --all-projects --detection-depth=3
 
   bandit-check:
-    name: SBandit check
+    name: Bandit check
     runs-on: ubuntu-latest
     permissions:
       security-events: write
@@ -95,3 +95,24 @@ jobs:
           sarif_file: 'trivy-results.sarif'  
           sha: ${{ github.sha }} 
           ref: ${{ github.ref }}
+
+  build-and-push:
+    name: Build and Push the Docker Container
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./
+          file: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/devops-project:latest
