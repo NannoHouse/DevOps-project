@@ -133,11 +133,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Pull docker image
-        run: docker pull ${{ secrets.DOCKER_USERNAME }}/devops-project:latest
+        run: docker pull giyordanov/devops-project:latest
       - name: Minikube rollout
         run: |
           kubectl apply -f k8s/
-          kubectl rollout status deployment/devops-project-deployment 
+          kubectl rollout status deployment/devops-project-deployment  --timeout=5m
       - name: Check kubes status
         run: kubectl get all
       - name: Stop the minicube
