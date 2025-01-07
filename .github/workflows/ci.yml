@@ -136,6 +136,11 @@ jobs:
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/devops-project:latest
       - name: Verify docker image pull
         run: docker images
+      - name: Check if deployment was successful
+        run: |
+          kubectl get pods
+          kubectl describe pod $(kubectl get pods --selector=app=devops-project -o jsonpath='{.items[0].metadata.name}')
+          kubectl logs $(kubectl get pods --selector=app=devops-project -o jsonpath='{.items[0].metadata.name}')
       - name: Minikube rollout
         run: |
           kubectl apply -f k8s/
