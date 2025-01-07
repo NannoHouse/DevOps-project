@@ -138,9 +138,11 @@ jobs:
         run: docker images
       - name: Check if deployment was successful
         run: |
-          kubectl get pods
-          kubectl describe pod $(kubectl get pods --selector=app=devops-project -o jsonpath='{.items[0].metadata.name}')
-          kubectl logs $(kubectl get pods --selector=app=devops-project -o jsonpath='{.items[0].metadata.name}')
+          kubectl get deployments
+          kubectl describe deployment devops-project-deployment
+      - name: Wait for pods to be in Running state
+        run: |
+          kubectl wait --for=condition=ready pod -l app=devops-project --timeout=5m
       - name: Minikube rollout
         run: |
           kubectl apply -f k8s/
