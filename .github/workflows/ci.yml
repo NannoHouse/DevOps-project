@@ -137,7 +137,7 @@ jobs:
       - name: Minikube rollout
         run: |
           kubectl apply -f k8s/
-          kubectl rollout status deployment/devops-project-deployment  --timeout=5m
+          kubectl rollout status devops-project-deployment  --timeout=5m
       - name: Check kubes status
         run: kubectl get all
       - name: Stop the minicube
