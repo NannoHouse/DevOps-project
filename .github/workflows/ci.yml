@@ -128,7 +128,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Pull docker image
-        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/devops-project:latest
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/devops-project:latest
 
       - name: Minikube rollout
         run: |
