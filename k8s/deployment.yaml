@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: devops-project  
-        image: ${{secrets.DOCKER_USERNAME}}:latest 
+        image: ${{secrets.DOCKER_USERNAME}}/devops-project:latest 
         ports:
         - containerPort: 5000
 
