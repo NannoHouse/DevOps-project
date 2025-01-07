@@ -134,18 +134,12 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Pull docker image
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/devops-project:latest
-      - name: Verify docker image pull
-        run: docker images
-      - name: Check if deployment was successful
-        run: |
-          kubectl get deployments
-          kubectl describe deployment devops-project-deployment
-      - name: Wait for pods to be in Running state
-        run: |
-          kubectl wait --for=condition=ready pod -l app=devops-project --timeout=5m
       - name: Minikube rollout
         run: |
           kubectl apply -f k8s/
+          kubectl get deployments
+          kubectl describe deployment devops-project-deployment
+          kubectl wait --for=condition=ready pod -l app=devops-project --timeout=5m
           kubectl rollout status deployment/devops-project-deployment  --timeout=5m
       - name: Check kubes status
         run: kubectl get all
