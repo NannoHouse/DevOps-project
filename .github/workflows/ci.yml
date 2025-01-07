@@ -134,11 +134,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Pull docker image
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/devops-project:latest
-
       - name: Minikube rollout
         run: |
           kubectl apply -f k8s/
-          kubectl rollout status deployment/deployment
+          kubectl rollout status deployment/devops-project-deployment
       - name: Check kubes status
         run: kubectl get all
       - name: Stop the minicube
