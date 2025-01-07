@@ -133,7 +133,9 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Pull docker image
-        run: docker pull giyordanov/devops-project:latest
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/devops-project:latest
+      - name: Verify docker image pull
+        run: docker images
       - name: Minikube rollout
         run: |
           kubectl apply -f k8s/
