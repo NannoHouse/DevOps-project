@@ -24,6 +24,7 @@ jobs:
           kubectl apply -f k8s/
           kubectl get deployments
           kubectl describe deployment devops-project-deployment
+          kunectl get all
           kubectl rollout status deployment/devops-project-deployment  --timeout=5m
           kubectl wait --for=condition=ready pod -l app=devops-project --timeout=5m
       - name: Check kubes status
