@@ -7,6 +7,7 @@ on:
       branches:
         - main
 jobs:
+
   build-and-push:
     name: Build and Push the Docker Container
     runs-on: ubuntu-latest
