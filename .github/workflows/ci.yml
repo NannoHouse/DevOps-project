@@ -142,3 +142,4 @@ jobs:
         run: kubectl get all
       - name: Stop the minicube
         run: minikube stop
+        
