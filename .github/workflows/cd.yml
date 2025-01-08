@@ -49,6 +49,10 @@ jobs:
         run: |
           kubectl apply -f k8s/
           kubectl rollout status deployment/devops-project-deployment  --timeout=5m
+      - name: Rollback if failed
+          if: failure()
+          run: |
+            kubectl rollout undo deployment/devops-project-deployment
       - name: Check kubes status
         run: kubectl get all
       - name: Stop the minicube
