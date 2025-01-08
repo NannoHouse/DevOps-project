@@ -17,5 +17,3 @@ spec:
         image: giyordanov/devops-project:latest 
         ports:
         - containerPort: 5000
-
-
