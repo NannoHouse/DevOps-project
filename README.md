@@ -1,6 +1,5 @@
 # DevOps-project
 Project for course DevOps at FMI 2024-2025
-
 The documentation goes over:
 - Overview;
 - Plan and structure;
@@ -98,4 +97,5 @@ Afterwards the program should print:
  	* Running on http://127.0.0.1:5000
  	* Running on http://10.108.7.55:5000
 By accessing one of theese two link, u will produce a GET request to the app and on the screen will be displayed your randomly generated number.
+
 
