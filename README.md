@@ -10,8 +10,7 @@ The documentation goes over:
 	- Project folder structure;
 - Implementation details;
 - Installation;
-- Local start and use;
-	- Using the app.
+	- Start the app;
 
 ## Overview
 The Random generator is a Flask-based web application that generates and displays a random number between 1 and 1000 whenever the root URL ("/") is accessed.
@@ -89,8 +88,8 @@ If you are using an Arch based Linux distribution installing things with pip giv
 
 	pip install -r requirements.txt --break-system-packages
 
-### Start server:
-First the server needs to be turned on. To do that simply run:
+### Start app:
+To startthe app simply run:
 
 	python3 app.py
 
